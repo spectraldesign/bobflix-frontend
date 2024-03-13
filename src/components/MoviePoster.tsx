@@ -10,7 +10,7 @@ export default function MoviePoster(poster: MovieType) {
     const handleMouseOver = (e: any) => {
         e.preventDefault();
         e.currentTarget.style.filter = 'brightness(1)';
-        e.currentTarget.style.scale = '1.02'
+        e.currentTarget.style.scale = '1.01'
         setOpacity(0.4);
     }
     const handleMouseOut = (e: any) => {
@@ -20,8 +20,12 @@ export default function MoviePoster(poster: MovieType) {
         setOpacity(0.2);
     }
 
+    const handleSubmit = () => {
+
+    }
+
     return (
-        <div id={poster.imdbID} style={{ height: 300, width: 200, zIndex: 0 }}>
+        <div id={poster.imdbID} style={{ height: 400, width: 250, zIndex: 0 }}>
             <Image
                 src={poster.posterUrl}
                 alt={poster.title}
@@ -41,7 +45,7 @@ export default function MoviePoster(poster: MovieType) {
 
             <Image
                 pos="relative"
-                top={-300}
+                top={-400}
                 style={{
                     opacity: opacity,
                     zIndex: -1,
@@ -54,7 +58,7 @@ export default function MoviePoster(poster: MovieType) {
                 src={poster.posterUrl}
                 alt={poster.title}
             />
-            <Text pos="relative" top={-300} size="md" w={200} ta="center" truncate="end">
+            <Text pos="relative" top={-400} mt={10} size="md" w={250} ta="center" truncate="end">
                 {poster.title}
             </Text>
         </div>

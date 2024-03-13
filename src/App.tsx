@@ -6,6 +6,7 @@ import MovieDetails from './pages/MovieDetails'
 import { MantineProvider } from '@mantine/core'
 import '@mantine/core/styles.css';
 import Header from './components/Header'
+import Profile from './pages/Profile'
 
 function App() {
 
@@ -31,6 +32,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<h1>404 - Page not found</h1>} />
       </Routes>
     </MantineProvider>
   )
