@@ -1,4 +1,4 @@
-import { Center, Flex, Text } from "@mantine/core";
+import { Flex } from "@mantine/core";
 import { MovieType } from "../types/MovieType";
 
 export default function RatingComponent({ movie }: { movie: MovieType }) {
@@ -9,7 +9,6 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
             mt={-70}
         >
             {
-                // Create 10 stars. movie.currentUserRating of which should be filled, the rest should be empty
                 Array.from({ length: 10 }, (_, index) => (
                     <>
                         <p

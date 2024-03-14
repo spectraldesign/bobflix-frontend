@@ -1,0 +1,35 @@
+.movie-poster-container {
+    height: 400px;
+    width: 250px;
+    z-index: 0;
+}
+
+.movie-poster {
+    filter: brightness(0.9);
+    transition: all 0.5s ease;
+    z-index: 0;
+    cursor: pointer;
+    transform: scale(1);
+}
+
+.movie-poster:hover {
+    filter: brightness(1);
+    transform: scale(1.01);
+}
+
+.movie-poster-glow {
+    filter: brightness(0.9) blur(20px);
+    transition: all 0.5s ease;
+    z-index: -1;
+    cursor: pointer;
+    transform: scale(1);
+    opacity: 0.2;
+    pointer-events: none;
+
+}
+
+.movie-poster:hover+.movie-poster-glow {
+    filter: brightness(1) blur(20px);
+    transform: scale(1.01);
+    opacity: 0.4;
+}
