@@ -7,7 +7,7 @@ export default function Header() {
     return (
         <Flex
             w={"100%"}
-            h={100}
+            h={80}
             justify="space-between"
             align="center"
             style={{

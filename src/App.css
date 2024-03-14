@@ -5,7 +5,8 @@
     "space"
     "main";
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 40px 1fr;
+  grid-template-rows: 80px 40px 1fr;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
