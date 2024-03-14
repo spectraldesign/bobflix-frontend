@@ -1,0 +1,21 @@
+.header-logo-text {
+    cursor: pointer;
+    filter: drop-shadow(0 0 10px rgba(80, 78, 218, 0));
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.header-logo-text:hover {
+    filter: drop-shadow(0 0 20px rgba(80, 78, 218, 0.4));
+    transform: scale(1.1);
+}
+
+.header-avatar {
+    cursor: pointer;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.header-avatar:hover {
+    transform: scale(1.1);
+}

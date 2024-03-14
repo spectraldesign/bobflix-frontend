@@ -5,8 +5,8 @@ import { SearchContext } from "../pages/Home";
 export default function SearchBox() {
     const { setSearch } = useContext(SearchContext);
 
-    const handleSubmit = (e: any) => {
-        setSearch(e.target.value)
+    const handleSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        setSearch(e.currentTarget.value)
     }
     return (
         <Flex justify="center" align="center" w={{ base: 150, xs: 200, sm: 250, md: 350 }} mb={20}>
