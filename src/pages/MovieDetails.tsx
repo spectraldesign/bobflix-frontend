@@ -15,7 +15,7 @@ export default function MovieDetails() {
         // Placeholder, fetch data from API
         setMovie(mockedData.find((movie) => movie.imdbID === id) as MovieType);
         setLoading(false);
-    }, [])
+    }, [id])
 
     return (
         <Flex

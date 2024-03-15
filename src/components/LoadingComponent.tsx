@@ -1,4 +1,4 @@
-import { Flex, Loader, Text, rgba } from "@mantine/core";
+import { Flex, Loader, Text } from "@mantine/core";
 
 export default function LoadingComponent() {
     return (
