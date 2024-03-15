@@ -26,9 +26,8 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
                 mb={-50}
             >
                 {[...Array(10)].map((_, index) => (
-                    <>
+                    <div key={index}>
                         <p
-                            key={index}
                             onMouseEnter={() => handleStarHover(index)}
                             onMouseLeave={() => handleStarLeave()}
                             onClick={() => handleStarClick(index)}
@@ -47,7 +46,6 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
                             ★
                         </p>
                         <p
-                            key={index}
                             onMouseEnter={() => handleStarHover(index)}
                             onMouseLeave={() => handleStarLeave()}
                             onClick={() => handleStarClick(index)}
@@ -61,7 +59,7 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
                         >
                             ☆
                         </p>
-                    </>
+                    </div>
                 ))}
             </Flex>
             <Text ta={"center"} fw={"bold"} size="lg" c={hoverRating != rating ? "white" : "gold"}>{hoverRating}/10</Text>
