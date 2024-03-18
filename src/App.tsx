@@ -1,13 +1,15 @@
+import { MantineProvider, createTheme, useMantineColorScheme } from '@mantine/core'
+import '@mantine/core/styles.css'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
+import Footer from './components/Footer'
+import Header from './components/Header'
 import Home from './pages/Home'
 import MovieDetails from './pages/MovieDetails'
-import { MantineProvider, createTheme } from '@mantine/core'
-import '@mantine/core/styles.css';
-import Header from './components/Header'
 import Profile from './pages/Profile'
 
 function App() {
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
   const theme = createTheme({
     colors: {
       dark: [
@@ -26,8 +28,7 @@ function App() {
 
   });
   return (
-    <MantineProvider defaultColorScheme='dark' forceColorScheme='dark'
-      theme={theme}>
+    <MantineProvider defaultColorScheme={colorScheme} theme={theme}>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -35,6 +36,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<h1>404 - Page not found</h1>} />
       </Routes>
+      <Footer colorScheme={colorScheme} setColorScheme={setColorScheme} />
     </MantineProvider>
   )
 }

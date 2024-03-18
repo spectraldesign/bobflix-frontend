@@ -1,6 +1,6 @@
 export default function Profile() {
     return (
-        <div style={{ gridArea: "main" }}>
+        <div className="main">
             <h1>Profile</h1>
         </div>
     )
