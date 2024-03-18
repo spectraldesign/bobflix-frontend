@@ -1,10 +1,10 @@
-import { Flex, Pagination, SimpleGrid, Text } from "@mantine/core"
-import MoviePoster from "../components/MoviePoster"
-import { mockedData } from "../mockData"
-import { createContext, useEffect, useState } from "react"
-import { MovieType } from "../types/MovieType"
-import LoadingComponent from "../components/LoadingComponent"
-import SearchBox from "../components/SearchBox"
+import { Flex, Pagination, SimpleGrid, Text } from "@mantine/core";
+import { createContext, useEffect, useState } from "react";
+import LoadingComponent from "../components/LoadingComponent";
+import MoviePoster from "../components/MoviePoster";
+import SearchBox from "../components/SearchBox";
+import { mockedData } from "../mockData";
+import { MovieType } from "../types/MovieType";
 
 export const SearchContext = createContext({} as { search: string, setSearch: (search: string) => void });
 export default function Home() {
@@ -32,63 +32,61 @@ export default function Home() {
         setLoading(false);
     }, [search, page])
     return (
-        <Flex
-            mih={50}
-            gap="md"
-            justify="center"
-            align="center"
-            direction="column"
-            wrap="wrap"
-            h="100%"
-            style={{ gridArea: "main" }}
-            ta="center"
-        >
-            {
-                loading ? <LoadingComponent /> : (
-                    <>
-                        <SearchContext.Provider value={{ search, setSearch }}>
-                            <SearchBox />
-                        </SearchContext.Provider>
-                        {
-                            search ?
-                                <Text ta="center" w={"100%"}>Search results for "{search}"</Text>
-                                :
-                                <></>
-                        }
-                        {
-                            movies && movies.length > 0 ?
-                                <>
-                                    <SimpleGrid
-                                        cols={{ base: 1, xs: 2, sm: 3, md: 4, lg: 5 }}
-                                        spacing="md"
-                                        verticalSpacing="50px"
-                                    >
-                                        {
-                                            movies.map((movie) => {
-                                                return (
-                                                    <MoviePoster key={movie.imdbID} {...movie} />
-                                                )
-                                            })
+        <div className="main">
+            <Flex
+                gap="md"
+                justify="center"
+                align="center"
+                direction="column"
+                ta="center"
+            >
+                {
+                    loading ? <LoadingComponent /> : (
+                        <>
+                            <SearchContext.Provider value={{ search, setSearch }}>
+                                <SearchBox />
+                            </SearchContext.Provider>
+                            {
+                                search ?
+                                    <Text ta="center" w={"100%"}>Search results for "{search}"</Text>
+                                    :
+                                    <></>
+                            }
+                            {
+                                movies && movies.length > 0 ?
+                                    <>
+                                        <SimpleGrid
+                                            cols={{ base: 1, xs: 2, sm: 3, md: 4, lg: 5 }}
+                                            spacing="md"
+                                            verticalSpacing="50px"
+                                        >
+                                            {
+                                                movies.map((movie) => {
+                                                    return (
+                                                        <MoviePoster key={movie.imdbID} {...movie} />
+                                                    )
+                                                })
 
-                                        }
-                                    </SimpleGrid>
-                                    <Pagination
-                                        total={totalPages}
-                                        value={page}
-                                        onChange={(value) => {
-                                            setPage(value)
-                                            window.scrollTo(0, 0);
-                                        }}
-                                        pb={10}
-                                        mt={40}
-                                    />
-                                </>
-                                :
-                                <Text ta="center" w={"100%"} fs="italic">No movies found</Text>
-                        }
-                    </>
-                )
-            }
-        </Flex>
+                                            }
+                                        </SimpleGrid>
+                                        <Pagination
+                                            total={totalPages}
+                                            value={page}
+                                            onChange={(value) => {
+                                                setPage(value)
+                                                window.scrollTo(0, 0);
+                                            }}
+                                            pb={10}
+                                            mt={40}
+                                        />
+                                    </>
+                                    :
+                                    <Text ta="center" w={"100%"} fs="italic">No movies found</Text>
+                            }
+                        </>
+                    )
+                }
+            </Flex>
+        </div>
     )
 }

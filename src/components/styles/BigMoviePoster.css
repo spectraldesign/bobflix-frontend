@@ -1,0 +1,35 @@
+.posterContainer {
+    position: relative;
+    width: auto;
+    height: 100%;
+    transition: all 0.2s ease;
+    padding: 0px;
+}
+
+.poster,
+.posterBlur {
+    width: auto;
+    height: 100%;
+    border-radius: 12px;
+    transition: all 0.2s ease-out;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transition: all 0.2s ease-out;
+    transform: scale(0.99);
+}
+
+.posterBlur {
+    position: absolute;
+    filter: blur(30px) opacity(0.1);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.poster:hover+.posterBlur {
+    filter: blur(30px) opacity(0.3);
+    transform: scale(1);
+}
+
+.poster:hover {
+    transform: scale(1);
+}

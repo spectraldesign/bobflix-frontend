@@ -1,13 +1,13 @@
 import { Avatar, Flex, Text, rgba } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import "./styles/Header.css"
+import "./styles/Header.css";
 
 export default function Header() {
     const navigate = useNavigate();
     return (
         <Flex
             w={"100%"}
-            h={80}
+            h={"100%"}
             justify="space-between"
             align="center"
             style={{
@@ -15,6 +15,7 @@ export default function Header() {
                 gridArea: "header",
                 overflow: "hidden",
             }}
+
         >
             <Text
                 className="header-logo-text"

@@ -1,7 +1,7 @@
 import { Image, Text } from "@mantine/core";
-import { MovieType } from "../types/MovieType";
 import { useNavigate } from "react-router-dom";
-import "./styles/MoviePoster.css"
+import { MovieType } from "../types/MovieType";
+import "./styles/MoviePoster.css";
 export default function MoviePoster(poster: MovieType) {
     const navigate = useNavigate();
     return (
@@ -10,7 +10,6 @@ export default function MoviePoster(poster: MovieType) {
                 className="movie-poster"
                 src={poster.posterUrl}
                 alt={poster.title}
-                radius={10}
                 h="100%"
                 w="100%"
                 onClick={() => { navigate(`/movie/${poster.imdbID}`) }}

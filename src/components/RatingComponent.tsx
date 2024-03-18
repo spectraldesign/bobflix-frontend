@@ -1,6 +1,6 @@
 import { Flex, Text } from "@mantine/core";
-import { MovieType } from "../types/MovieType";
 import { useState } from "react";
+import { MovieType } from "../types/MovieType";
 
 export default function RatingComponent({ movie }: { movie: MovieType }) {
     const [rating, setRating] = useState<number>(movie.currentUserRating);
@@ -39,7 +39,7 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
                                 filter:
                                     index < hoverRating
                                         ? "drop-shadow(0 0 5px rgba(255,215,0, 0.3))"
-                                        : "none",
+                                        : "drop-shadow(0 0 1px rgba(0,0,0, 1))",
                                 display: index < rating ? "block" : "none",
                             }}
                         >
@@ -55,6 +55,7 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
                                 cursor: "pointer",
                                 color: index >= hoverRating ? "white" : "gold",
                                 display: index >= rating ? "block" : "none",
+                                filter: "drop-shadow(0 0 1px rgba(0,0,0, 1))"
                             }}
                         >
                             ☆
