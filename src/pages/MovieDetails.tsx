@@ -1,10 +1,10 @@
-import { Center, Divider, Flex, Image, SimpleGrid, Text } from "@mantine/core";
+import { Divider, Flex, SimpleGrid, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import BigMoviePoster from "../components/BigMoviePoster";
 import RatingComponent from "../components/RatingComponent";
 import { mockedData } from "../mockData";
 import { MovieType } from "../types/MovieType";
-import BigMoviePoster from "../components/BigMoviePoster";
 
 export default function MovieDetails() {
     const { id } = useParams();
