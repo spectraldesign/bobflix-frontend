@@ -1,6 +1,6 @@
 import { Flex, Text } from "@mantine/core";
 import { useState } from "react";
-import { MovieType } from "../types/MovieType";
+import { MovieType } from "../api/Bobflix";
 
 export default function RatingComponent({ movie }: { movie: MovieType }) {
     const [rating, setRating] = useState<number>(movie.currentUserRating);

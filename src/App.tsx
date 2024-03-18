@@ -1,5 +1,6 @@
 import { MantineProvider, createTheme, useMantineColorScheme } from '@mantine/core'
 import '@mantine/core/styles.css'
+import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Footer from './components/Footer'
@@ -29,6 +30,7 @@ function App() {
   });
   return (
     <MantineProvider defaultColorScheme={colorScheme} theme={theme}>
+      <Toaster />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

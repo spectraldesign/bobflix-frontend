@@ -1,5 +1,5 @@
 import { Center, Image } from "@mantine/core";
-import { MovieType } from "../types/MovieType";
+import { MovieType } from "../api/Bobflix";
 import './styles/BigMoviePoster.css';
 export default function BigMoviePoster({ movie }: { movie: MovieType }) {
     const handle3d = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -20,8 +20,8 @@ export default function BigMoviePoster({ movie }: { movie: MovieType }) {
     }
     return (
         <Center className="posterContainer" pos={"relative"} w={"auto"} h={{ base: 450, md: 600, lg: 700 }} onMouseMove={(e) => handle3d(e)} onMouseLeave={(e) => handleMouseLeave(e)}>
-            <Image className="poster" src={movie.posterUrl} alt={movie.title} />
-            <Image className="posterBlur" src={movie.posterUrl} alt={movie.title} />
+            <Image className="poster" src={movie.poster_url} alt={movie.title} />
+            <Image className="posterBlur" src={movie.poster_url} alt={movie.title} />
         </Center>
     )
 }
