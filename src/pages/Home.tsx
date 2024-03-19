@@ -1,4 +1,4 @@
-import { Flex, Pagination, SimpleGrid, Text } from "@mantine/core";
+import { Button, Flex, Pagination, SimpleGrid, Text } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { SearchContext } from "../App";
@@ -9,7 +9,7 @@ import MoviePoster from "../components/MoviePoster";
 import SearchBox from "../components/SearchBox";
 
 export default function Home() {
-    const { search } = useContext(SearchContext);
+    const { search, setSearch } = useContext(SearchContext);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(true);
@@ -98,7 +98,10 @@ export default function Home() {
                                             />
                                         </>
                                         :
-                                        <Text ta="center" w={"100%"} fs="italic">No movies found</Text>
+                                        <>
+                                            <Text ta="center" w={"100%"} fs="italic">No movies found</Text>
+                                            <Button variant="outline" onClick={() => setSearch('')}>Go Back</Button>
+                                        </>
                                 }
                             </>
                         )

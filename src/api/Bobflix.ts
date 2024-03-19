@@ -72,7 +72,7 @@ export class BobflixAPI {
     }
 
     static async getMovieById(id: string): Promise<ApiResponse<MovieType>> {
-        const response = await customAxios.get<ApiResponse<MovieType>>(`/movies/byId/${id}`)
+        const response = await customAxios.get<ApiResponse<MovieType>>(`/movies/getBy/${id}`)
         return response.data;
     }
 

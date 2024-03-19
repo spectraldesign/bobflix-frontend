@@ -53,7 +53,7 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
                                 fontSize: 50,
                                 fontWeight: 700,
                                 cursor: "pointer",
-                                color: index >= hoverRating ? "white" : "gold",
+                                color: index >= hoverRating ? "lightgrey" : "gold",
                                 display: index >= rating ? "block" : "none",
                                 filter: "drop-shadow(0 0 1px rgba(0,0,0, 1))"
                             }}
@@ -63,8 +63,8 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
                     </div>
                 ))}
             </Flex>
-            <Text ta={"center"} fw={"bold"} size="lg" c={hoverRating != rating ? "white" : "gold"}>{hoverRating}/10</Text>
-            <Text ta={"center"} size="sm">Avarage rating: {movie.avgRating} | Source: IMDB</Text>
+            <Text ta={"center"} fw={"bold"} size="lg" c={hoverRating != rating ? "lightgrey" : "gold"}>{hoverRating}/10</Text>
+            <Text mt={10} ta={"center"} size="sm">Avarage rating: {movie.avgRating} | Source: IMDB</Text>
         </Flex>
     )
 }

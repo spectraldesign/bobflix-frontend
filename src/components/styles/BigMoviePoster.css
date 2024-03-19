@@ -8,7 +8,7 @@
 
 .poster,
 .posterBlur {
-    width: auto;
+    width: 100%;
     height: 100%;
     border-radius: 12px;
     transition: all 0.2s ease-out;

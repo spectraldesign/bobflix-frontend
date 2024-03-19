@@ -9,18 +9,19 @@ import LoadingComponent from "../components/LoadingComponent";
 import RatingComponent from "../components/RatingComponent";
 
 export default function MovieDetails() {
-    const { imdbID } = useParams();
+    const { id } = useParams();
     const [movie, setMovie] = useState({} as MovieType);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
     // Get movie
     useEffect(() => {
-        if (!imdbID) {
-            setLoading(true);
+        setLoading(true);
+        console.log(id)
+        if (!id) {
             return;
         }
-        BobflixAPI.getMovieById(imdbID!).then((res) => {
+        BobflixAPI.getMovieById(id).then((res) => {
             if (!res.success) {
                 toast.error(res.errorMessage);
                 setError(`Failed to load data: ${res.errorMessage}`);
@@ -30,7 +31,7 @@ export default function MovieDetails() {
             }
             setLoading(false);
         })
-    }, [imdbID])
+    }, [id])
 
     return (
         <div className="main">
@@ -57,16 +58,23 @@ export default function MovieDetails() {
                                         <BigMoviePoster movie={movie} />
                                         <Flex justify={"center"} align={"center"} direction={"column"}>
                                             <Text fs={"oblique"} fw={700} mb={10}>{movie.title}</Text>
-                                            <Divider
-                                                w={{ base: 350, sm: 650, md: 450, lg: 550, xl: 700 }}
-                                                my={"md"} label="DIRECTOR"
-                                                labelPosition={"center"}
-                                                c="white"
-                                                size={"xs"}
-                                            />
-                                            <Text w={{ base: 350, sm: 650, md: 450, lg: 550, xl: 700 }}>
-                                                {movie.director}
-                                            </Text>
+                                            {
+                                                movie.director.length > 3 ?
+                                                    <>
+                                                        <Divider
+                                                            w={{ base: 350, sm: 650, md: 450, lg: 550, xl: 700 }}
+                                                            my={"md"} label="DIRECTOR"
+                                                            labelPosition={"center"}
+                                                            c="white"
+                                                            size={"xs"}
+                                                        />
+                                                        <Text w={{ base: 350, sm: 650, md: 450, lg: 550, xl: 700 }}>
+                                                            {movie.director}
+                                                        </Text>
+                                                    </>
+                                                    :
+                                                    <></>
+                                            }
                                             <Divider
                                                 w={{ base: 350, sm: 650, md: 450, lg: 550, xl: 700 }}
                                                 my={"md"} label="MOVIE PLOT"
@@ -78,16 +86,23 @@ export default function MovieDetails() {
                                                 {movie.plot}
                                             </Text>
 
-                                            <Divider
-                                                w={{ base: 350, sm: 650, md: 450, lg: 550, xl: 700 }}
-                                                my={"md"} label="RELEASED"
-                                                labelPosition={"center"}
-                                                c="white"
-                                                size={"xs"}
-                                            />
-                                            <Text w={{ base: 350, sm: 650, md: 450, lg: 550, xl: 700 }}>
-                                                {movie.released}
-                                            </Text>
+                                            {
+                                                movie.released.length > 3 ?
+                                                    <>
+                                                        <Divider
+                                                            w={{ base: 350, sm: 650, md: 450, lg: 550, xl: 700 }}
+                                                            my={"md"} label="RELEASED"
+                                                            labelPosition={"center"}
+                                                            c="white"
+                                                            size={"xs"}
+                                                        />
+                                                        <Text w={{ base: 350, sm: 650, md: 450, lg: 550, xl: 700 }}>
+                                                            {movie.released}
+                                                        </Text>
+                                                    </>
+                                                    :
+                                                    <></>
+                                            }
                                             <Divider
                                                 w={{ base: 350, sm: 650, md: 450, lg: 550, xl: 700 }}
                                                 my={"md"} label="RATE MOVIE"
