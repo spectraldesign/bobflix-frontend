@@ -1,5 +1,6 @@
 import { Center, Image } from "@mantine/core";
-import { MovieType } from "../types/MovieType";
+import { MovieType } from "../api/Bobflix";
+import placeholder from "../assets/placeholder_poster.png";
 import './styles/BigMoviePoster.css';
 export default function BigMoviePoster({ movie }: { movie: MovieType }) {
     const handle3d = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -19,9 +20,9 @@ export default function BigMoviePoster({ movie }: { movie: MovieType }) {
         container.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
     }
     return (
-        <Center className="posterContainer" pos={"relative"} w={"auto"} h={{ base: 450, md: 600, lg: 700 }} onMouseMove={(e) => handle3d(e)} onMouseLeave={(e) => handleMouseLeave(e)}>
-            <Image className="poster" src={movie.posterUrl} alt={movie.title} />
-            <Image className="posterBlur" src={movie.posterUrl} alt={movie.title} />
+        <Center className="posterContainer" pos={"relative"} w={"100%"} h={"100%"} onMouseMove={(e) => handle3d(e)} onMouseLeave={(e) => handleMouseLeave(e)}>
+            <Image className="poster" src={movie.posterUrl} alt={movie.title} fallbackSrc={placeholder} w={{ base: 281, md: 375, lg: 437 }} h={{ base: 450, md: 600, lg: 700 }} />
+            <Image className="posterBlur" src={movie.posterUrl} alt={movie.title} fallbackSrc={placeholder} w={{ base: 281, md: 375, lg: 437 }} h={{ base: 450, md: 600, lg: 700 }} />
         </Center>
     )
 }

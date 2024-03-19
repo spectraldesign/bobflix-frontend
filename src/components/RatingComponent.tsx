@@ -1,6 +1,7 @@
 import { Flex, Text } from "@mantine/core";
 import { useState } from "react";
-import { MovieType } from "../types/MovieType";
+import toast from "react-hot-toast";
+import { BobflixAPI, MovieType } from "../api/Bobflix";
 
 export default function RatingComponent({ movie }: { movie: MovieType }) {
     const [rating, setRating] = useState<number>(movie.currentUserRating);
@@ -15,8 +16,15 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
     };
 
     const handleStarClick = (starIndex: number) => {
-        // Simulate API request, replace with actual API call
-        setRating(starIndex + 1);
+        BobflixAPI.rateMovie(movie.imdbId, starIndex + 1).then((res) => {
+            if (!res.success) {
+                toast.error(res.errorMessage);
+            }
+            else {
+                setRating(starIndex + 1);
+                toast.success("Rating saved!");
+            }
+        })
     };
     return (
         <Flex direction={"column"}>
@@ -53,7 +61,7 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
                                 fontSize: 50,
                                 fontWeight: 700,
                                 cursor: "pointer",
-                                color: index >= hoverRating ? "white" : "gold",
+                                color: index >= hoverRating ? "lightgrey" : "gold",
                                 display: index >= rating ? "block" : "none",
                                 filter: "drop-shadow(0 0 1px rgba(0,0,0, 1))"
                             }}
@@ -63,7 +71,8 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
                     </div>
                 ))}
             </Flex>
-            <Text ta={"center"} fw={"bold"} size="lg" c={hoverRating != rating ? "white" : "gold"}>{hoverRating}/10</Text>
+            <Text ta={"center"} fw={"bold"} size="lg" c={hoverRating != rating ? "lightgrey" : "gold"}>{hoverRating}/10</Text>
+            <Text mt={10} ta={"center"} size="sm">Avarage rating: {movie.avgRating} | Source: IMDB</Text>
         </Flex>
     )
 }

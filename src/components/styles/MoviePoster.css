@@ -2,6 +2,13 @@
     height: 400px;
     width: 250px;
     z-index: 0;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.movie-poster-container:hover {
+    transform: scale(1.01);
 }
 
 .movie-poster {
@@ -15,7 +22,6 @@
 
 .movie-poster:hover {
     filter: brightness(1);
-    transform: scale(1.01);
 }
 
 .movie-poster-glow {
@@ -31,6 +37,15 @@
 
 .movie-poster:hover+.movie-poster-glow {
     filter: brightness(1) blur(20px);
-    transform: scale(1.01);
     opacity: 0.4;
+}
+
+
+.posterFavourite {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }

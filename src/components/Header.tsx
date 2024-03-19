@@ -1,8 +1,11 @@
 import { Avatar, Flex, Text, rgba } from "@mantine/core";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { SearchContext } from "../App";
 import "./styles/Header.css";
 
 export default function Header() {
+    const { setSearch } = useContext(SearchContext)
     const navigate = useNavigate();
     return (
         <Flex
@@ -24,7 +27,10 @@ export default function Header() {
                 ml={40}
                 variant="gradient"
                 gradient={{ from: 'indigo', to: 'violet', deg: 154 }}
-                onClick={() => navigate('/')}
+                onClick={() => {
+                    setSearch('');
+                    navigate('/');
+                }}
             >
                 BOBFLIX
             </Text>
@@ -36,7 +42,10 @@ export default function Header() {
                 mr={20}
                 src=""
                 color="indigo"
-                onClick={() => navigate('/profile')}
+                onClick={() => {
+                    setSearch('');
+                    navigate('/profile');
+                }}
             />
         </Flex>
     )
