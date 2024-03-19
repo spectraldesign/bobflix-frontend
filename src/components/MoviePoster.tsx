@@ -1,12 +1,14 @@
 import { Image, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { MovieType } from "../api/Bobflix";
+import placeholder from "../assets/placeholder_poster.png";
+import FavouriteButton from "./FavouriteButton";
 import "./styles/MoviePoster.css";
-import placeholder from "../assets/placeholder_poster.png"
 export default function MoviePoster(poster: MovieType) {
     const navigate = useNavigate();
     return (
         <div className="movie-poster-container" id={poster.imdbId}>
+            <FavouriteButton movie={poster} size="xl" className="posterFavourite" />
             <Image
                 className="movie-poster"
                 src={poster.posterUrl}

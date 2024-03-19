@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { BobflixAPI, MovieType } from "../api/Bobflix";
 import BigMoviePoster from "../components/BigMoviePoster";
 import ErrorComponent from "../components/ErrorComponent";
+import FavouriteButton from "../components/FavouriteButton";
 import LoadingComponent from "../components/LoadingComponent";
 import RatingComponent from "../components/RatingComponent";
 
@@ -57,6 +58,7 @@ export default function MovieDetails() {
                                     >
                                         <BigMoviePoster movie={movie} />
                                         <Flex justify={"center"} align={"center"} direction={"column"}>
+                                            <FavouriteButton movie={movie} size="xl" className="bigMoviePosterFavourite" />
                                             <Text fs={"oblique"} fw={700} mb={10}>{movie.title}</Text>
                                             {
                                                 movie.director.length > 3 ?

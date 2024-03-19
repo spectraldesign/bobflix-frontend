@@ -23,6 +23,28 @@ export type MovieResponseType = {
     totalPages: number
 }
 
+export enum ApiUserRole {
+    User,
+    Admin
+}
+
+export type UserAuthType = {
+    email: string,
+    username: string,
+    token: string,
+}
+
+export type UserType = {
+    email: string,
+    username: string,
+    avgRating: number,
+    favouriteMovies: MovieType[]
+}
+
+export type FavouriteToggleType = {
+    favourite: boolean
+}
+
 function handleError(error: any): AxiosResponse<ApiResponse<any>> {
     const response: AxiosResponse<ApiResponse<any>, any> = {
         data: {
@@ -77,17 +99,37 @@ export class BobflixAPI {
     }
 
     static async searchMovies(search: string, page: number = 1): Promise<ApiResponse<MovieResponseType>> {
-        const response = await customAxios.get(`/movies/${search}/${page}`)
+        const response = await customAxios.get<ApiResponse<MovieResponseType>>(`/movies/${search}/${page}`)
         return response.data;
     }
 
-    static async toggleFavourite(ImdbID: string): Promise<ApiResponse<undefined>> {
-        const response = await customAxios.put(`/movies/favourite/${ImdbID}`);
+    static async toggleFavourite(ImdbID: string): Promise<ApiResponse<FavouriteToggleType>> {
+        const response = await customAxios.put<ApiResponse<FavouriteToggleType>>(`/favourite/${ImdbID}`);
         return response.data;
     }
 
     static async rateMovie(ImdbID: string, rating: number): Promise<ApiResponse<undefined>> {
-        const response = await customAxios.put(`/movies/rate/${ImdbID}/${rating}`);
+        const response = await customAxios.put<ApiResponse<undefined>>(`/rate/${ImdbID}`, { rating });
+        return response.data;
+    }
+
+    static async registerUser(email: string, username: string, password: string, role: ApiUserRole = ApiUserRole.User): Promise<ApiResponse<UserAuthType>> {
+        const response = await customAxios.post<ApiResponse<UserAuthType>>('/users/register', { email, username, password, role });
+        return response.data;
+    }
+
+    static async loginUser(email: string, password: string): Promise<ApiResponse<UserAuthType>> {
+        const response = await customAxios.post<ApiResponse<UserAuthType>>('/users/login', { email, password });
+        return response.data;
+    }
+
+    static async updateUser(currentPassword: string, newPassword: string): Promise<ApiResponse<UserAuthType>> {
+        const response = await customAxios.put<ApiResponse<UserAuthType>>('/users/update', { currentPassword, newPassword });
+        return response.data;
+    }
+
+    static async getLoggedInUser(): Promise<ApiResponse<UserType>> {
+        const response = await customAxios.get<ApiResponse<UserType>>('/users/get');
         return response.data;
     }
 }

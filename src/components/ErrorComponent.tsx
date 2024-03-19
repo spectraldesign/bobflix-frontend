@@ -12,9 +12,8 @@ export default function ErrorComponent({ error }: { error: string }) {
             <Text c="red" fs="xl" fw="bold">{error}</Text>
             <Button mt={20} variant="outline" rightSection={<IconReload size={20} />}
                 onClick={() => {
-                    setSearch('');
-                    navigate('/');
-                }}>Go Back</Button>
+                    window.location.reload();
+                }}>Try again</Button>
         </Flex>
     )
 }

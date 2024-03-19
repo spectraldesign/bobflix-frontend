@@ -33,3 +33,7 @@
 .poster:hover {
     transform: scale(1);
 }
+
+.bigMoviePosterFavourite{
+    margin-bottom: 10px;
+}

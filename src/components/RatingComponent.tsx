@@ -1,6 +1,7 @@
 import { Flex, Text } from "@mantine/core";
 import { useState } from "react";
-import { MovieType } from "../api/Bobflix";
+import toast from "react-hot-toast";
+import { BobflixAPI, MovieType } from "../api/Bobflix";
 
 export default function RatingComponent({ movie }: { movie: MovieType }) {
     const [rating, setRating] = useState<number>(movie.currentUserRating);
@@ -15,8 +16,15 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
     };
 
     const handleStarClick = (starIndex: number) => {
-        // Simulate API request, replace with actual API call
-        setRating(starIndex + 1);
+        BobflixAPI.rateMovie(movie.imdbId, starIndex + 1).then((res) => {
+            if (!res.success) {
+                toast.error(res.errorMessage);
+            }
+            else {
+                setRating(starIndex + 1);
+                toast.success("Rating saved!");
+            }
+        })
     };
     return (
         <Flex direction={"column"}>

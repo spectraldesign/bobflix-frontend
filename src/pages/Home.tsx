@@ -76,6 +76,7 @@ export default function Home() {
                                                 cols={{ base: 1, xs: 2, sm: 3, md: 4, lg: 5 }}
                                                 spacing="md"
                                                 verticalSpacing="50px"
+                                                style={{transition: "all 0.3s ease"}}
                                             >
                                                 {
                                                     movies.map((movie) => {
