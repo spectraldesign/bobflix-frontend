@@ -45,6 +45,7 @@ export type FavouriteToggleType = {
     favourite: boolean
 }
 
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 function handleError(error: any): AxiosResponse<ApiResponse<any>> {
     const response: AxiosResponse<ApiResponse<any>, any> = {
         data: {
