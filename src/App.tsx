@@ -9,6 +9,7 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import MovieDetails from './pages/MovieDetails'
 import Profile from './pages/Profile'
+import Register from './pages/Register'
 
 export const SearchContext = createContext({} as { search: string, setSearch: (search: string) => void })
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<h1>404 - Page not found</h1>} />
         </Routes>
       </SearchContext.Provider>
