@@ -1,6 +1,6 @@
 import { Flex, TextInput } from "@mantine/core";
 import { useContext } from "react";
-import { SearchContext } from "../pages/Home";
+import { SearchContext } from "../App";
 
 export default function SearchBox() {
     const { setSearch } = useContext(SearchContext);

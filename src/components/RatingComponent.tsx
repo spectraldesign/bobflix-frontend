@@ -64,6 +64,7 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
                 ))}
             </Flex>
             <Text ta={"center"} fw={"bold"} size="lg" c={hoverRating != rating ? "white" : "gold"}>{hoverRating}/10</Text>
+            <Text ta={"center"} size="sm">Avarage rating: {movie.avgRating} | Source: IMDB</Text>
         </Flex>
     )
 }

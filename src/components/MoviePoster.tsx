@@ -2,17 +2,19 @@ import { Image, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { MovieType } from "../api/Bobflix";
 import "./styles/MoviePoster.css";
+import placeholder from "../assets/placeholder_poster.png"
 export default function MoviePoster(poster: MovieType) {
     const navigate = useNavigate();
     return (
-        <div className="movie-poster-container" id={poster.imdbID}>
+        <div className="movie-poster-container" id={poster.imdbId}>
             <Image
                 className="movie-poster"
-                src={poster.poster_url}
+                src={poster.posterUrl}
                 alt={poster.title}
                 h="100%"
                 w="100%"
-                onClick={() => { navigate(`/movie/${poster.imdbID}`) }}
+                onClick={() => { navigate(`/movie/${poster.imdbId}`) }}
+                fallbackSrc={placeholder}
             />
 
             <Image
@@ -22,8 +24,9 @@ export default function MoviePoster(poster: MovieType) {
                 h="100%"
                 w="100%"
                 radius="20px"
-                src={poster.poster_url}
+                src={poster.posterUrl}
                 alt={poster.title}
+                fallbackSrc={placeholder}
             />
             <Text pos="relative" top={-400} mt={10} size="md" w={250} ta="center" truncate="end">
                 {poster.title}

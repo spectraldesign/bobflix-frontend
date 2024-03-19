@@ -7,9 +7,11 @@ export type ApiResponse<T> = {
 }
 
 export type MovieType = {
-    imdbID: string,
+    imdbId: string,
     title: string,
-    poster_url: string,
+    director: string,
+    released: string,
+    posterUrl: string,
     plot: string,
     currentUserRating: number,
     avgRating: number
@@ -37,7 +39,7 @@ function handleError(error: any): AxiosResponse<ApiResponse<any>> {
 }
 
 const customAxios = axios.create({
-    baseURL: 'https://localhost:7239',
+    baseURL: 'https://localhost:7239/api',
     timeout: 8000,
     headers: {
         'Content-Type': 'application/json',
@@ -69,8 +71,13 @@ export class BobflixAPI {
         return response.data;
     }
 
+    static async getMovieById(id: string): Promise<ApiResponse<MovieType>> {
+        const response = await customAxios.get<ApiResponse<MovieType>>(`/movies/byId/${id}`)
+        return response.data;
+    }
+
     static async searchMovies(search: string, page: number = 1): Promise<ApiResponse<MovieResponseType>> {
-        const response = await customAxios.get(`/movies/search/${search}/${page}`)
+        const response = await customAxios.get(`/movies/${search}/${page}`)
         return response.data;
     }
 

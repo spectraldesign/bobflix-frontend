@@ -20,8 +20,8 @@ export default function BigMoviePoster({ movie }: { movie: MovieType }) {
     }
     return (
         <Center className="posterContainer" pos={"relative"} w={"auto"} h={{ base: 450, md: 600, lg: 700 }} onMouseMove={(e) => handle3d(e)} onMouseLeave={(e) => handleMouseLeave(e)}>
-            <Image className="poster" src={movie.poster_url} alt={movie.title} />
-            <Image className="posterBlur" src={movie.poster_url} alt={movie.title} />
+            <Image className="poster" src={movie.posterUrl} alt={movie.title} />
+            <Image className="posterBlur" src={movie.posterUrl} alt={movie.title} />
         </Center>
     )
 }
