@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-
+import { JwtPayload, jwtDecode } from 'jwt-decode';
+import toast from 'react-hot-toast';
 export type ApiResponse<T> = {
     success: boolean;
     errorMessage: string;
@@ -36,7 +37,7 @@ export type UserAuthType = {
 
 export type UserType = {
     email: string,
-    username: string,
+    userName: string,
     avgRating: number,
     favouriteMovies: MovieType[]
 }
@@ -132,5 +133,25 @@ export class BobflixAPI {
     static async getLoggedInUser(): Promise<ApiResponse<UserType>> {
         const response = await customAxios.get<ApiResponse<UserType>>('/users/get');
         return response.data;
+    }
+
+    static hasValidJwt(): boolean {
+        const jwt = localStorage.getItem('token');
+        if (!jwt) {
+            return false;
+        }
+        let decoded: JwtPayload;
+        try {
+            decoded = jwtDecode(jwt);
+        } catch (error) {
+            toast.error('Failed to decode token');
+            return false
+        }
+        const hasExpired = decoded.exp && decoded.exp * 1000 < Date.now();
+        if (hasExpired) {
+            toast.error('Token has expired');
+            return false
+        }
+        return true
     }
 }

@@ -1,10 +1,12 @@
 import { Avatar, Button, Divider, Flex, LoadingOverlay, PasswordInput, Text, TextInput } from "@mantine/core";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import CustomPasswordInput from "../components/CustomPasswordInput";
 import { BobflixAPI } from "../api/Bobflix";
+import { JwtContext } from "../App";
 
 export default function Register() {
+    const { setJwt } = useContext(JwtContext)
     const [email, setEmail] = useState('')
     const [emailError, setEmailError] = useState('')
     const [username, setUsername] = useState('')
@@ -66,7 +68,7 @@ export default function Register() {
             }
             else {
                 toast.success('User registered successfully!')
-                console.log(res.data)
+                setJwt(res.data.token)
             }
             setLoading(false)
             return
