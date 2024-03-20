@@ -110,7 +110,7 @@ export class BobflixAPI {
     }
 
     static async rateMovie(ImdbID: string, rating: number): Promise<ApiResponse<undefined>> {
-        const response = await customAxios.put<ApiResponse<undefined>>(`/rate/${ImdbID}`, { rating });
+        const response = await customAxios.put<ApiResponse<undefined>>(`/rate/${ImdbID}/${rating}`);
         return response.data;
     }
 

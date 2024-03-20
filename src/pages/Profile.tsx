@@ -24,7 +24,7 @@ export default function Profile() {
                     <div>
                         <p>User is not logged in, please provide valid JWT or Register/Login:</p>
                         <Button onClick={() => navigate('/register')}>Register</Button>
-                        <TextInput placeholder="Token" onChange={(event) => {
+                        <TextInput w={300} mt={20} placeholder="Token" onChange={(event) => {
                             setJwt(event.currentTarget.value)
                         }} />
                     </div>
