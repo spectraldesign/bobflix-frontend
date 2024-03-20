@@ -38,9 +38,8 @@ function getStrength(password: string) {
     return Math.max(100 - (100 / (requirements.length + 1)) * multiplier, 10);
 }
 
-export default function CustomPasswordInput() {
+export default function CustomPasswordInput({ value, setValue, setError }: { value: string, setValue: (value: string) => void, setError: (error: string) => void }) {
     const [popoverOpened, setPopoverOpened] = useState(false);
-    const [value, setValue] = useState('');
     const checks = requirements.map((requirement, index) => (
         <PasswordRequirement key={index} label={requirement.label} meets={requirement.re.test(value)} />
     ));
@@ -48,20 +47,37 @@ export default function CustomPasswordInput() {
     const strength = getStrength(value);
     const color = strength === 100 ? 'teal' : strength > 50 ? 'yellow' : 'red';
 
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const val = event.currentTarget.value;
+        setValue(val);
+        let errorString = '';
+        requirements.forEach((requirement) => {
+            if (!requirement.re.test(val)) {
+                errorString += requirement.label + '\n';
+            }
+        });
+        if (val.length < 6) {
+            errorString += 'Includes at least 6 characters';
+        }
+        setError(errorString);
+
+
+    }
+
     return (
         <Popover opened={popoverOpened} position="bottom" width="target" transitionProps={{ transition: 'pop' }}>
             <Popover.Target>
                 <Center
                     onFocusCapture={() => setPopoverOpened(true)}
                     onBlurCapture={() => setPopoverOpened(false)}
-                    w={300}
+                    w={"100%"}
                 >
                     <PasswordInput
                         withAsterisk
                         label="Select a password"
                         placeholder="Your password"
                         value={value}
-                        onChange={(event) => setValue(event.currentTarget.value)}
+                        onChange={(event) => handleChange(event)}
                         w={"100%"}
                     />
                 </Center>
