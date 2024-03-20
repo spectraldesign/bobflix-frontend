@@ -1,9 +1,10 @@
 import { Avatar, Button, Divider, Flex, LoadingOverlay, PasswordInput, Text, TextInput } from "@mantine/core";
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
-import CustomPasswordInput from "../components/CustomPasswordInput";
-import { BobflixAPI } from "../api/Bobflix";
+import { useNavigate } from "react-router-dom";
 import { JwtContext } from "../App";
+import { BobflixAPI } from "../api/Bobflix";
+import CustomPasswordInput from "../components/CustomPasswordInput";
 
 export default function Register() {
     const { setJwt } = useContext(JwtContext)
@@ -16,6 +17,8 @@ export default function Register() {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [confirmPasswordError, setConfirmPasswordError] = useState('')
     const [loading, setLoading] = useState(false)
+
+    const navigate = useNavigate()
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.currentTarget.value)
@@ -69,6 +72,7 @@ export default function Register() {
             else {
                 toast.success('User registered successfully!')
                 setJwt(res.data.token)
+                navigate('/')
             }
             setLoading(false)
             return
@@ -128,6 +132,7 @@ export default function Register() {
                         error={confirmPasswordError}
                     />
                     <Button variant="light" color="indigo" w={150} mt={20} onClick={() => submitRegister()}>Register</Button>
+                    <Text mt={10} fs="xs">Already have an account? <Text style={{ cursor: "pointer" }} component="a" onClick={() => navigate('/login')}>Login</Text></Text>
                 </Flex>
             </Flex>
         </div >

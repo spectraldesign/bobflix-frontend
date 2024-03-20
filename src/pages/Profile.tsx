@@ -13,7 +13,13 @@ export default function Profile() {
             <h1>Profile</h1>
             {
                 user ?
-                    <p>Logged in as {user.userName}</p>
+                    <div>
+                        <p>Logged in as {user.userName}</p>
+                        <Button onClick={() => {
+                            setJwt('')
+                            navigate('/')
+                        }}>Logout</Button>
+                    </div>
                     :
                     <div>
                         <p>User is not logged in, please provide valid JWT or Register/Login:</p>

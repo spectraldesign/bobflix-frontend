@@ -8,7 +8,6 @@ export default function FavouriteButton({ movie, size, className }: { movie: Mov
     const { user } = useContext(UserContext)
     const [loading, setLoading] = useState(false)
     const [isFavourite, setIsFavourite] = useState(user?.favouriteMovies?.includes(movie) || false)
-    console.log(user)
     const favouriteMovie = () => {
         if (!user) {
             return toast.error("Please log in to favourite movies!");

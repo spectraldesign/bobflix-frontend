@@ -75,7 +75,6 @@ const customAxios = axios.create({
 customAxios.interceptors.response.use(async (response) => {
     return response;
 }, (error) => {
-    //TODO: Potentially refresh JWT token if expired
     return handleError(error);
 });
 

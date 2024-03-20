@@ -1,7 +1,7 @@
 import { MantineProvider, createTheme, useMantineColorScheme } from '@mantine/core'
 import '@mantine/core/styles.css'
 import { createContext, useEffect, useState } from 'react'
-import toast, { Toaster } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import { BobflixAPI, UserType } from './api/Bobflix'
@@ -30,9 +30,6 @@ function App() {
           setUser(res.data)
         }
       })
-    }
-    else {
-      toast.error('Invalid JWT token, please log in again!')
     }
   }, [jwt])
 
