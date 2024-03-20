@@ -7,7 +7,7 @@ import { BobflixAPI, MovieType } from "../api/Bobflix";
 export default function FavouriteButton({ movie, size, className }: { movie: MovieType, size: string, className?: string }) {
     const { user } = useContext(UserContext)
     const [loading, setLoading] = useState(false)
-    const [isFavourite, setIsFavourite] = useState(user?.favouriteMovies?.includes(movie) || false)
+    const [isFavourite, setIsFavourite] = useState(user?.favouriteMovies.map((m) => m.imdbId).includes(movie.imdbId) || false);
     const favouriteMovie = () => {
         if (!user) {
             return toast.error("Please log in to favourite movies!");
@@ -24,6 +24,8 @@ export default function FavouriteButton({ movie, size, className }: { movie: Mov
             setLoading(false);
         })
     }
+
+
     return (
         <Tooltip label={isFavourite ? "Remove from favourites" : "Add to favourites"} position="left" withArrow>
             <ActionIcon

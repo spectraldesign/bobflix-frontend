@@ -22,7 +22,6 @@ export default function Home() {
         if (search && search.length > 0) {
             BobflixAPI.searchMovies(search, page).then((res) => {
                 if (!res.success) {
-                    console.log(res)
                     toast.error(res.errorMessage);
                     setError(`Failed to load data: ${res.errorMessage}`);
                 }
