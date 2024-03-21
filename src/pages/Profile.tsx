@@ -56,7 +56,6 @@ export default function Profile() {
 
     useEffect(() => {
         if (profileImage) {
-            console.log(profileImage)
             const reader = new FileReader()
             reader.readAsDataURL(profileImage)
             reader.onload = () => {
@@ -74,7 +73,6 @@ export default function Profile() {
 
     }, [profileImage])
 
-    console.log(user?.imgUrl)
     return (
         <div className="main">
             <Flex
