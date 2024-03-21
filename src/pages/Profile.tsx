@@ -51,7 +51,7 @@ export default function Profile() {
             )
         });
         setRows(temp)
-    }, [user])
+    }, [user,navigate])
 
     return (
         <div className="main">

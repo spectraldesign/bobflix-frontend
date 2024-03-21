@@ -1,19 +1,17 @@
-import { Avatar, Button, Divider, Flex, LoadingOverlay, PasswordInput, Text, TextInput } from "@mantine/core";
+import { Avatar, Button, Flex, LoadingOverlay, PasswordInput, Text, TextInput } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { JwtContext, UserContext } from "../App";
 import { BobflixAPI } from "../api/Bobflix";
-import CustomPasswordInput from "../components/CustomPasswordInput";
 
 export default function Login() {
     const { setJwt } = useContext(JwtContext);
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
     const [password, setPassword] = useState("");
-    const [passwordError, setPasswordError] = useState("");
     const [loading, setLoading] = useState(false);
-    const { user } = useContext(UserContext)
+    const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
 
@@ -62,7 +60,7 @@ export default function Login() {
         if (user) {
             navigate('/')
         }
-    }, [user])
+    }, [user,navigate])
 
     return (
         <div className="main">
@@ -85,6 +83,7 @@ export default function Login() {
                         w={"100%"}
                         mb={10}
                         onChange={handleEmailChange}
+                        error={emailError}
 
                     />
                     <PasswordInput
