@@ -140,7 +140,7 @@ export default function Profile() {
                                     mb={-10}
                                 />
                                 <div className="profile-movies">
-                                    <Text>Avarage rating: {user.avgRating}</Text>
+                                    <Text>Average rating: {user.avgRating}</Text>
                                     {
                                         user.favouriteMovies.length > 0 ?
                                             <Table
