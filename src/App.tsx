@@ -31,6 +31,9 @@ function App() {
         }
       })
     }
+    else{
+      setUser(null)
+    }
   }, [jwt])
 
   const theme = createTheme({

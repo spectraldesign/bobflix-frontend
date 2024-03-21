@@ -17,6 +17,7 @@ export default function Profile() {
                         <p>Logged in as {user.userName}</p>
                         <Button onClick={() => {
                             setJwt('')
+                            
                             navigate('/')
                         }}>Logout</Button>
                     </div>
