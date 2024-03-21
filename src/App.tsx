@@ -24,6 +24,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('token', jwt)
+
     if (BobflixAPI.hasValidJwt()) {
       BobflixAPI.getLoggedInUser().then((res) => {
         if (res.success) {
@@ -31,7 +32,7 @@ function App() {
         }
       })
     }
-    else{
+    else {
       setUser(null)
     }
   }, [jwt])
@@ -56,9 +57,9 @@ function App() {
     <MantineProvider defaultColorScheme={colorScheme} theme={theme}>
       <Toaster />
       <SearchContext.Provider value={{ search, setSearch }}>
-        <Header />
         <JwtContext.Provider value={{ jwt, setJwt }}>
           <UserContext.Provider value={{ user, setUser }}>
+            <Header />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/movie/:id" element={<MovieDetails />} />
