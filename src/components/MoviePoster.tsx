@@ -2,6 +2,7 @@ import { Image, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { MovieType } from "../api/Bobflix";
 import placeholder from "../assets/placeholder_poster.png";
+import angular from "../assets/trash.jpg";
 import FavouriteButton from "./FavouriteButton";
 import "./styles/MoviePoster.css";
 export default function MoviePoster(poster: MovieType) {
@@ -11,7 +12,7 @@ export default function MoviePoster(poster: MovieType) {
             <FavouriteButton movie={poster} size="xl" className="posterFavourite" />
             <Image
                 className="movie-poster"
-                src={poster.posterUrl}
+                src={poster.posterUrl == "ANGULAR" ? angular : poster.posterUrl}
                 alt={poster.title}
                 h="100%"
                 w="100%"
@@ -26,7 +27,7 @@ export default function MoviePoster(poster: MovieType) {
                 h="100%"
                 w="100%"
                 radius="20px"
-                src={poster.posterUrl}
+                src={poster.posterUrl == "ANGULAR" ? angular : poster.posterUrl}
                 alt={poster.title}
                 fallbackSrc={placeholder}
             />

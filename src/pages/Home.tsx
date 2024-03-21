@@ -75,7 +75,7 @@ export default function Home() {
                                                 cols={{ base: 1, xs: 2, sm: 3, md: 4, lg: 5 }}
                                                 spacing="md"
                                                 verticalSpacing="50px"
-                                                style={{transition: "all 0.3s ease"}}
+                                                style={{ transition: "all 0.3s ease" }}
                                             >
                                                 {
                                                     movies.map((movie) => {
@@ -99,8 +99,27 @@ export default function Home() {
                                         </>
                                         :
                                         <>
-                                            <Text ta="center" w={"100%"} fs="italic">No movies found</Text>
-                                            <Button variant="outline" onClick={() => setSearch('')}>Go Back</Button>
+                                            {
+                                                search == "angular" ?
+                                                    <>
+                                                        <MoviePoster
+                                                            title="Angular 🤮"
+                                                            avgRating={0}
+                                                            director="Yikes"
+                                                            plot="Depression"
+                                                            released="1982"
+                                                            currentUserRating={0}
+                                                            imdbId="angular"
+                                                            posterUrl="ANGULAR"
+                                                            key={"angular"}
+                                                        />
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <Text ta="center" w={"100%"} fs="italic">No movies found</Text>
+                                                        <Button variant="outline" onClick={() => setSearch('')}>Go Back</Button>
+                                                    </>
+                                            }
                                         </>
                                 }
                             </>
