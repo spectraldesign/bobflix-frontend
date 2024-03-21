@@ -11,6 +11,7 @@ import Home from './pages/Home'
 import MovieDetails from './pages/MovieDetails'
 import Profile from './pages/Profile'
 import Register from './pages/Register'
+import Login from './pages/Login'
 
 export const SearchContext = createContext({} as { search: string, setSearch: (search: string) => void })
 export const UserContext = createContext({} as { user: UserType | null, setUser: (user: UserType | null) => void })
@@ -65,6 +66,7 @@ function App() {
               <Route path="/movie/:id" element={<MovieDetails />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
               <Route path="*" element={<h1>404 - Page not found</h1>} />
             </Routes>
           </UserContext.Provider>
