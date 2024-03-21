@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom"
 import { JwtContext } from "../App"
 import { BobflixAPI, UserType } from "../api/Bobflix"
 import LoadingComponent from "../components/LoadingComponent"
-
+import "../components/styles/Header.css"
 export default function Profile() {
-    const [file, setFile] = useState<File | null>(null)
+    const [profileImage, setProfileImage] = useState<File | null>(null)
+    const [coverImage, setCoverImage] = useState<File | null>(null)
     const [user, setUser] = useState(null as UserType | null)
     const [loading, setLoading] = useState(true)
     const { setJwt } = useContext(JwtContext)
@@ -55,10 +56,10 @@ export default function Profile() {
     }, [user, navigate])
 
     useEffect(() => {
-        if (file) {
-            console.log(file)
+        if (profileImage) {
+            console.log(profileImage)
             const reader = new FileReader()
-            reader.readAsDataURL(file)
+            reader.readAsDataURL(profileImage)
             reader.onload = () => {
                 BobflixAPI.setAvatar(reader.result as string).then((res) => {
                     if (res.success) {
@@ -70,20 +71,11 @@ export default function Profile() {
                     }
                 })
             }
-            /*
-            BobflixAPI.uploadAvatar(formData).then((res) => {
-                if (res.success) {
-                    setUser(res.data)
-                }
-                else {
-                    toast.error(res.errorMessage)
-                }
-            })
-            */
         }
-    
-    }, [file])
 
+    }, [profileImage])
+
+    console.log(user?.imgUrl)
     return (
         <div className="main">
             <Flex
@@ -99,7 +91,10 @@ export default function Profile() {
                     loading ? <LoadingComponent /> :
                         user ?
                             <>
-                                <FileButton onChange={setFile} accept="image/png, image/jpeg">
+
+                                <img className="coverimage" src={user.imgUrl ?? ''} alt="cover"/>
+
+                                <FileButton onChange={setProfileImage} accept="image/png, image/jpeg">
                                     {(props) =>
                                         <Tooltip label="Change avatar" position="bottom" offset={-20}>
                                             <Avatar
@@ -107,7 +102,9 @@ export default function Profile() {
                                                 variant="transparent"
                                                 radius="xs"
                                                 size={150}
-                                                src=""
+                                                mb={20}
+                                                src={user.imgUrl ?? ''}
+                                                style={{ borderRadius: "50%" }}
                                                 color="indigo"
                                                 {...props}
                                             />

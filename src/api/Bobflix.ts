@@ -39,7 +39,8 @@ export type UserType = {
     email: string,
     userName: string,
     avgRating: number,
-    favouriteMovies: MovieType[]
+    favouriteMovies: MovieType[],
+    imgUrl: string
 }
 
 export type FavouriteToggleType = {
@@ -135,7 +136,7 @@ export class BobflixAPI {
     }
 
     static async setAvatar(avatar: string): Promise<ApiResponse<undefined>> {
-        const response = await customAxios.put<ApiResponse<undefined>>('/users/avatar', { avatar });
+        const response = await customAxios.put<ApiResponse<undefined>>('/users/avatar', { imgUrl: avatar });
         return response.data;
     }
 
