@@ -8,7 +8,6 @@ import LoadingComponent from "../components/LoadingComponent"
 import "../components/styles/Header.css"
 export default function Profile() {
     const [profileImage, setProfileImage] = useState<File | null>(null)
-    const [coverImage, setCoverImage] = useState<File | null>(null)
     const [user, setUser] = useState(null as UserType | null)
     const [loading, setLoading] = useState(true)
     const { setJwt } = useContext(JwtContext)
@@ -92,7 +91,7 @@ export default function Profile() {
                         user ?
                             <>
 
-                                <img className="coverimage" src={user.imgUrl ?? ''} alt="cover"/>
+                                <img className="coverimage" src={user.imgUrl ?? ''} alt="cover" />
 
                                 <FileButton onChange={setProfileImage} accept="image/png, image/jpeg">
                                     {(props) =>
