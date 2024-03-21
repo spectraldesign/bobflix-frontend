@@ -34,7 +34,6 @@ export default function Header() {
             >
                 BOBFLIX
             </Text>
-            <p onClick={() => navigate('/register')}>register</p>
             <Avatar
                 className="header-avatar"
                 variant="transparent"

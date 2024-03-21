@@ -1,12 +1,17 @@
 import { ActionIcon, Tooltip } from "@mantine/core";
 import { IconHeart } from "@tabler/icons-react";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { UserContext } from "../App";
 import { BobflixAPI, MovieType } from "../api/Bobflix";
 export default function FavouriteButton({ movie, size, className }: { movie: MovieType, size: string, className?: string }) {
-    const [isFavourite, setIsFavourite] = useState(false)
+    const { user } = useContext(UserContext)
     const [loading, setLoading] = useState(false)
+    const [isFavourite, setIsFavourite] = useState(false);
     const favouriteMovie = () => {
+        if (!user) {
+            return toast.error("Please log in to favourite movies!");
+        }
         setLoading(true);
         BobflixAPI.toggleFavourite(movie.imdbId).then((res) => {
             if (!res.success) {
@@ -19,6 +24,12 @@ export default function FavouriteButton({ movie, size, className }: { movie: Mov
             setLoading(false);
         })
     }
+
+    useEffect(() => {
+        setIsFavourite(user?.favouriteMovies.map((m) => m.imdbId).includes(movie.imdbId) || false);
+    }, [user, movie])
+
+
     return (
         <Tooltip label={isFavourite ? "Remove from favourites" : "Add to favourites"} position="left" withArrow>
             <ActionIcon

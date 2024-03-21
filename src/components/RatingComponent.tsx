@@ -1,9 +1,11 @@
 import { Flex, Text } from "@mantine/core";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { BobflixAPI, MovieType } from "../api/Bobflix";
+import { UserContext } from "../App";
 
 export default function RatingComponent({ movie }: { movie: MovieType }) {
+    const { user } = useContext(UserContext)
     const [rating, setRating] = useState<number>(movie.currentUserRating);
     const [hoverRating, setHoverRating] = useState<number>(movie.currentUserRating);
 
@@ -16,6 +18,9 @@ export default function RatingComponent({ movie }: { movie: MovieType }) {
     };
 
     const handleStarClick = (starIndex: number) => {
+        if (!user) {
+            return toast.error("Please log in to rate movies!");
+        }
         BobflixAPI.rateMovie(movie.imdbId, starIndex + 1).then((res) => {
             if (!res.success) {
                 toast.error(res.errorMessage);

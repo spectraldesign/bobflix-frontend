@@ -18,7 +18,6 @@ export default function MovieDetails() {
     // Get movie
     useEffect(() => {
         setLoading(true);
-        console.log(id)
         if (!id) {
             return;
         }
