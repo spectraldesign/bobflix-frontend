@@ -134,6 +134,11 @@ export class BobflixAPI {
         return response.data;
     }
 
+    static async setAvatar(avatar: string): Promise<ApiResponse<undefined>> {
+        const response = await customAxios.put<ApiResponse<undefined>>('/users/avatar', { avatar });
+        return response.data;
+    }
+
     static hasValidJwt(): boolean {
         const jwt = localStorage.getItem('token');
         if (!jwt) {
