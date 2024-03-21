@@ -1,10 +1,12 @@
 import { Avatar, Flex, Text, rgba } from "@mantine/core";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { SearchContext } from "../App";
+import { JwtContext, SearchContext, UserContext } from "../App";
 import "./styles/Header.css";
 
 export default function Header() {
+    const { user } = useContext(UserContext)
+    const { setJwt } = useContext(JwtContext)
     const { setSearch } = useContext(SearchContext)
     const navigate = useNavigate();
     return (
@@ -34,19 +36,33 @@ export default function Header() {
             >
                 BOBFLIX
             </Text>
-            <Avatar
-                className="header-avatar"
-                variant="transparent"
-                radius="xs"
-                size="xl"
-                mr={20}
-                src=""
-                color="indigo"
-                onClick={() => {
-                    setSearch('');
-                    navigate('/profile');
-                }}
-            />
+            <Flex justify={"center"} align={"center"}>
+                <Text style={{ cursor: "pointer" }} component="a" onClick={() => {
+                    if (user) {
+                        setJwt('');
+                        navigate('/');
+                        window.location.reload();
+                    }
+                    else {
+                        navigate('/login');
+                    }
+                }}>
+                    {user ? "Log out" : "Log in"}
+                </Text>
+                <Avatar
+                    className="header-avatar"
+                    variant="transparent"
+                    radius="xs"
+                    size="xl"
+                    mr={20}
+                    src=""
+                    color="indigo"
+                    onClick={() => {
+                        setSearch('');
+                        navigate('/profile');
+                    }}
+                />
+            </Flex>
         </Flex>
     )
 }
