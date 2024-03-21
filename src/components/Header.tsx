@@ -52,10 +52,11 @@ export default function Header() {
                 <Avatar
                     className="header-avatar"
                     variant="transparent"
-                    radius="xs"
-                    size="xl"
+                    radius="xl"
+                    size="lg"
                     mr={20}
-                    src=""
+                    ml={20}
+                    src={user?.imgUrl ?? ''}
                     color="indigo"
                     onClick={() => {
                         setSearch('');

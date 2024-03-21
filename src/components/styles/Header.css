@@ -14,8 +14,19 @@
     cursor: pointer;
     transform: scale(1);
     transition: all 0.3s ease;
+    overflow: hidden;
 }
+
+
 
 .header-avatar:hover {
     transform: scale(1.1);
+}
+
+
+.coverimage {
+    width: 100%;
+    height: 200px;
+    object-fit: fill;
+    filter: blur(100px);
 }
