@@ -1,4 +1,4 @@
-import { Avatar, Button, Divider, FileButton, Flex, Table, Text, Tooltip } from "@mantine/core"
+import { Avatar, Button, Divider, FileButton, Flex, Image, Table, Text, Tooltip } from "@mantine/core"
 import { useContext, useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
@@ -89,7 +89,7 @@ export default function Profile() {
                         user ?
                             <>
 
-                                <img className="coverimage" src={user.imgUrl ?? ''} alt="cover" />
+                                <Image className="coverimage" src={user.imgUrl ?? ''} alt="cover" />
 
                                 <FileButton onChange={setProfileImage} accept="image/png, image/jpeg">
                                     {(props) =>
@@ -100,6 +100,7 @@ export default function Profile() {
                                                 radius="xs"
                                                 size={150}
                                                 mb={20}
+                                                mt={user.imgUrl ? -150 : 0}
                                                 src={user.imgUrl ?? ''}
                                                 style={{ borderRadius: "50%" }}
                                                 color="indigo"
